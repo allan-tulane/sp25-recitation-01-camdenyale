@@ -34,22 +34,15 @@ def _binary_search(mylist, key, left, right):
 	"""
 	### TODO
 	
-	# Base case - If the range is not valid, the key is not pressent
 	if left > right:
 		return -1
 
-	# Calculate the middle index
 	mid = (left + right) // 2
-
-	# Check if the middle element is the key
+	
 	if mylist[mid] == key:
 		return mid
-
-	# Search the right half of the list
 	elif mylist[mid] < key:
 		return _binary_search(mylist, key, mid + 1, right)
-
-	# Search the left half of the list
 	else: 
 		return _binary_search(mylist, key, left, mid - 1)
 	
@@ -75,16 +68,9 @@ def time_search(search_fn, mylist, key):
 	"""
 	### TODO
 
-	# Record the start time
 	start = time.time()
-
-	# Run the search function on the list
 	search_fn(mylist, key)
-	
-	# Record the end time
 	end = time.time()
-	
-	# Calculate the elapsed time and return
 	return (end - start) * 1000
 	###
 
@@ -104,19 +90,13 @@ def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
 	  for each method to run on each value of n
 	"""
 	### TODO
-	# Create a list to store the results for linear time and binary time
 	linear_times = []
 	binary_times = []
-	# Loop through the sizes list
 	for size in sizes:
-		# Create a list of numbers from 0 to size-1
 		size = int(size)
 		mylist = list(range(size))
-		# Time the linear search
 		linear_times.append(time_search(linear_search, mylist, -1))
-		# Time the binary search
 		binary_times.append(time_search(binary_search, mylist, -1))
-		# Return the results as a list of tuples
 	return [(size, linear_times[i], binary_times[i]) for i, size in enumerate(sizes)]
 	###
 
